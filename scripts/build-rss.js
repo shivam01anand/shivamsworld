@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import RSS from 'rss';
-import matter from 'gray-matter';
+import fm from 'front-matter';
 import { fileURLToPath } from 'url';
 
 // Helper to get __dirname in ES module scope
@@ -15,7 +15,7 @@ const publicDirectory = path.join(__dirname, '../dist'); // Output to Vite's bui
 async function generateRssFeed() {
   const site_url = 'https://shivamsworld.com'; // Updated with your domain
   const feed = new RSS({
-    title: 'Shivams World', // Updated title
+    title: 'Shivam Anand', // Updated to Shivam Anand from previous steps
     description: 'A personal blog by Shivam Anand.', // Updated description
     feed_url: `${site_url}/rss.xml`,
     site_url: site_url,
@@ -31,7 +31,8 @@ async function generateRssFeed() {
     .map(filename => {
       const filePath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data: frontmatter } = matter(fileContents);
+      // Use front-matter (fm) to parse
+      const { attributes: frontmatter } = fm(fileContents);
       const slug = filename.replace(/\.mdx$/, '');
       return {
         slug,
