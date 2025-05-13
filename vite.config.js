@@ -4,6 +4,7 @@ import mdx from '@mdx-js/rollup';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import remarkFrontmatter from 'remark-frontmatter';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,5 +28,10 @@ export default defineConfig({
   ],
   optimizeDeps: {
     include: ['react/jsx-runtime']
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   }
 }); 
