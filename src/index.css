@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-text font-sans text-lg leading-relaxed;
+  min-height: 100vh;
+}
+
+/* Basic dark mode support based on data attribute */
+[data-theme='dark'] body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Smooth transitions for color scheme changes */
+body,
+body * {
+  transition: background-color 0.3s ease, color 0.3s ease;
+} 
