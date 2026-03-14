@@ -3,17 +3,27 @@
 @tailwind utilities;
 
 body {
-  @apply bg-background text-text font-sans text-lg leading-relaxed;
+  @apply bg-stone-50 text-stone-800 font-sans antialiased;
   min-height: 100vh;
 }
 
-/* Basic dark mode support based on data attribute */
 [data-theme='dark'] body {
-  @apply bg-gray-900 text-gray-100;
+  @apply bg-stone-950 text-stone-200;
 }
 
-/* Smooth transitions for color scheme changes */
+/* Smooth transitions for theme changes */
 body,
-body * {
-  transition: background-color 0.3s ease, color 0.3s ease;
-} 
+header,
+footer,
+main {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-stone-200 text-stone-900;
+}
+
+[data-theme='dark'] ::selection {
+  @apply bg-stone-700 text-stone-100;
+}
