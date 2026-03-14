@@ -7,69 +7,72 @@ export default {
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
-      colors: {
-        'stone': {
-          50: '#fafaf9',
-          100: '#f5f5f4',
-          200: '#e7e5e4',
-          300: '#d6d3d1',
-          400: '#a8a29e',
-          500: '#78716c',
-          600: '#57534e',
-          700: '#44403c',
-          800: '#292524',
-          900: '#1c1917',
-          950: '#0c0a09',
-        },
-      },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         serif: ['Newsreader', 'Georgia', 'serif'],
       },
-      typography: (theme) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
-            color: theme('colors.stone.700'),
+            color: 'var(--text)',
             lineHeight: '1.8',
-            fontSize: '1.125rem',
+            fontSize: '1.0625rem',
             a: {
-              color: theme('colors.stone.900'),
+              color: 'var(--accent)',
               textDecoration: 'underline',
               textUnderlineOffset: '3px',
-              textDecorationColor: theme('colors.stone.300'),
+              fontWeight: 'inherit',
               '&:hover': {
-                textDecorationColor: theme('colors.stone.900'),
+                color: 'var(--accent-hover)',
               },
             },
-            'h1, h2, h3': {
-              fontFamily: theme('fontFamily.serif').join(', '),
-              color: theme('colors.stone.900'),
-              fontWeight: '600',
+            strong: {
+              color: 'var(--text)',
+              fontWeight: 600,
+            },
+            'h1, h2, h3, h4': {
+              color: 'var(--text)',
+              fontFamily: "'Newsreader', Georgia, serif",
+              fontWeight: 500,
+              letterSpacing: '-0.02em',
             },
             blockquote: {
-              borderLeftColor: theme('colors.stone.300'),
-              color: theme('colors.stone.600'),
+              borderLeftColor: 'var(--border)',
+              color: 'var(--text-secondary)',
               fontStyle: 'italic',
+            },
+            code: {
+              color: 'var(--text)',
+              backgroundColor: 'var(--bg-secondary)',
+              padding: '2px 6px',
+              borderRadius: '4px',
+              fontSize: '0.875em',
+            },
+            'code::before': { content: 'none' },
+            'code::after': { content: 'none' },
+            hr: {
+              borderColor: 'var(--border)',
+            },
+            'ul > li::marker': {
+              color: 'var(--text-muted)',
+            },
+            'ol > li::marker': {
+              color: 'var(--text-muted)',
             },
           },
         },
         invert: {
           css: {
-            color: theme('colors.stone.300'),
-            a: {
-              color: theme('colors.stone.100'),
-              textDecorationColor: theme('colors.stone.600'),
-              '&:hover': {
-                textDecorationColor: theme('colors.stone.100'),
-              },
-            },
-            'h1, h2, h3': {
-              color: theme('colors.stone.100'),
-            },
-            blockquote: {
-              borderLeftColor: theme('colors.stone.700'),
-              color: theme('colors.stone.400'),
-            },
+            '--tw-prose-body': 'var(--text)',
+            '--tw-prose-headings': 'var(--text)',
+            '--tw-prose-links': 'var(--accent)',
+            '--tw-prose-bold': 'var(--text)',
+            '--tw-prose-counters': 'var(--text-muted)',
+            '--tw-prose-bullets': 'var(--text-muted)',
+            '--tw-prose-hr': 'var(--border)',
+            '--tw-prose-quotes': 'var(--text-secondary)',
+            '--tw-prose-quote-borders': 'var(--border)',
+            '--tw-prose-code': 'var(--text)',
           },
         },
       }),
