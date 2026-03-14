@@ -41,19 +41,10 @@ const Home = () => {
           fontWeight: 500,
           color: 'var(--text)',
           lineHeight: 1.2,
-          marginBottom: '16px',
           letterSpacing: '-0.02em',
         }}>
-          Hey, I'm Shivam.
+          Shivam Anand
         </h1>
-        <p style={{
-          fontSize: '17px',
-          lineHeight: 1.7,
-          color: 'var(--text-secondary)',
-          maxWidth: '480px',
-        }}>
-          I build things and write about the process. This is my corner of the internet.
-        </p>
       </section>
 
       {/* Divider */}
