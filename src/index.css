@@ -2,28 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #FAFAF7;
+  --bg-secondary: #F0EFE9;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-muted: #9B9B9B;
+  --accent: #B8860B;
+  --accent-hover: #DAA520;
+  --border: #E8E6DF;
+  --hover-bg: #F5F4EF;
+}
+
+[data-theme='dark'] {
+  --bg: #0A0A0A;
+  --bg-secondary: #141414;
+  --text: #F5F5F3;
+  --text-secondary: #A0A0A0;
+  --text-muted: #636363;
+  --accent: #DAA520;
+  --accent-hover: #F0C850;
+  --border: #1F1F1F;
+  --hover-bg: #141414;
+}
+
 body {
-  @apply bg-stone-50 text-stone-800 font-sans antialiased;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-[data-theme='dark'] body {
-  @apply bg-stone-950 text-stone-200;
-}
-
-/* Smooth transitions for theme changes */
-body,
-header,
-footer,
-main {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Selection color */
 ::selection {
-  @apply bg-stone-200 text-stone-900;
-}
-
-[data-theme='dark'] ::selection {
-  @apply bg-stone-700 text-stone-100;
+  background-color: var(--accent);
+  color: #fff;
 }

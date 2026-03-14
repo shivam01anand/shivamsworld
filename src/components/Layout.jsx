@@ -17,37 +17,33 @@ const Layout = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    }
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 [data-theme='dark']:bg-stone-950">
-      <header className="py-6">
-        <div className="max-w-2xl mx-auto px-6 flex justify-between items-center">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <header style={{ borderBottom: '1px solid var(--border)', padding: '24px 0' }}>
+        <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link
             to="/"
-            className="text-lg font-medium text-stone-900 dark:text-stone-100 hover:opacity-70 transition-opacity"
+            style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text)', textDecoration: 'none', letterSpacing: '-0.01em' }}
           >
             Shivam Anand
           </Link>
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 transition-colors p-1"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
             aria-label="Toggle theme"
           >
             {isDarkMode ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="5" />
                 <line x1="12" y1="1" x2="12" y2="3" />
                 <line x1="12" y1="21" x2="12" y2="23" />
@@ -59,7 +55,7 @@ const Layout = ({ children }) => {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
               </svg>
             ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -67,23 +63,27 @@ const Layout = ({ children }) => {
         </div>
       </header>
 
-      <main className="flex-grow max-w-2xl w-full mx-auto px-6 py-4">
+      <main style={{ flexGrow: 1, maxWidth: '640px', width: '100%', margin: '0 auto', padding: '0 24px' }}>
         {children}
       </main>
 
-      <footer className="py-12 mt-auto">
-        <div className="max-w-2xl mx-auto px-6">
-          <div className="flex items-center gap-6 text-sm text-stone-400 dark:text-stone-500">
-            <a href="https://instagram.com/shivam01anand" target="_blank" rel="noopener noreferrer" className="hover:text-stone-700 dark:hover:text-stone-300 transition-colors">
-              Instagram
-            </a>
-            <a href="https://linkedin.com/in/shivam01anand" target="_blank" rel="noopener noreferrer" className="hover:text-stone-700 dark:hover:text-stone-300 transition-colors">
-              LinkedIn
-            </a>
-            <a href="mailto:shivam01anand@gmail.com" className="hover:text-stone-700 dark:hover:text-stone-300 transition-colors">
-              Email
-            </a>
-          </div>
+      <footer style={{ padding: '48px 0', marginTop: 'auto' }}>
+        <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 24px', display: 'flex', gap: '24px', fontSize: '13px' }}>
+          <a href="https://instagram.com/shivam01anand" target="_blank" rel="noopener noreferrer"
+            style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
+          >Instagram</a>
+          <a href="https://linkedin.com/in/shivam01anand" target="_blank" rel="noopener noreferrer"
+            style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
+          >LinkedIn</a>
+          <a href="mailto:shivam01anand@gmail.com"
+            style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
+          >Email</a>
         </div>
       </footer>
     </div>

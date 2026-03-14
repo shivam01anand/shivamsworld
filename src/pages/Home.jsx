@@ -28,31 +28,54 @@ const Home = () => {
         <meta name="description" content="Personal blog by Shivam Anand — thoughts on building, life, and everything in between." />
         <link rel="canonical" href={window.location.origin} />
         <meta property="og:title" content="Shivam Anand" />
-        <meta property="og:description" content="Personal blog by Shivam Anand — thoughts on building, life, and everything in between." />
+        <meta property="og:description" content="Personal blog by Shivam Anand." />
         <meta property="og:url" content={window.location.origin} />
         <meta property="og:type" content="website" />
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-12 pb-16">
-        <h1 className="font-serif text-3xl md:text-4xl font-semibold text-stone-900 dark:text-stone-100 mb-4 leading-tight">
+      <section style={{ paddingTop: '64px', paddingBottom: '56px' }}>
+        <h1 style={{
+          fontFamily: "'Newsreader', Georgia, serif",
+          fontSize: 'clamp(32px, 5vw, 44px)',
+          fontWeight: 500,
+          color: 'var(--text)',
+          lineHeight: 1.2,
+          marginBottom: '16px',
+          letterSpacing: '-0.02em',
+        }}>
           Hey, I'm Shivam.
         </h1>
-        <p className="text-stone-500 dark:text-stone-400 text-lg leading-relaxed max-w-lg">
+        <p style={{
+          fontSize: '17px',
+          lineHeight: 1.7,
+          color: 'var(--text-secondary)',
+          maxWidth: '480px',
+        }}>
           I build things and write about the process. This is my corner of the internet.
         </p>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: '1px', background: 'var(--border)', marginBottom: '40px' }} />
+
       {/* Posts */}
-      <section>
-        <h2 className="text-sm font-medium text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-6">
+      <section style={{ paddingBottom: '64px' }}>
+        <h2 style={{
+          fontSize: '12px',
+          fontWeight: 600,
+          color: 'var(--text-muted)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          marginBottom: '24px',
+        }}>
           Writing
         </h2>
 
         {loading ? (
-          <p className="text-stone-400">Loading...</p>
+          <p style={{ color: 'var(--text-muted)' }}>Loading...</p>
         ) : posts.length > 0 ? (
-          <div className="space-y-1">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {posts.map((post) => {
               const date = new Date(post.frontmatter.date);
               const formattedDate = date.toLocaleDateString('en-US', {
@@ -65,12 +88,29 @@ const Home = () => {
                 <Link
                   key={post.slug}
                   to={`/posts/${post.slug}`}
-                  className="group flex items-baseline justify-between py-3 -mx-3 px-3 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    padding: '12px',
+                    margin: '0 -12px',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'background-color 0.15s ease',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--hover-bg)'}
+                  onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <span className="text-stone-800 dark:text-stone-200 group-hover:text-stone-950 dark:group-hover:text-stone-50 transition-colors">
+                  <span style={{ color: 'var(--text)', fontSize: '16px' }}>
                     {post.frontmatter.title}
                   </span>
-                  <span className="text-sm text-stone-400 dark:text-stone-500 ml-4 shrink-0 tabular-nums">
+                  <span style={{
+                    color: 'var(--text-muted)',
+                    fontSize: '14px',
+                    marginLeft: '16px',
+                    flexShrink: 0,
+                    fontVariantNumeric: 'tabular-nums',
+                  }}>
                     {formattedDate}
                   </span>
                 </Link>
@@ -78,7 +118,7 @@ const Home = () => {
             })}
           </div>
         ) : (
-          <p className="text-stone-400">No posts yet.</p>
+          <p style={{ color: 'var(--text-muted)' }}>No posts yet.</p>
         )}
       </section>
     </div>
